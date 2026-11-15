@@ -8,6 +8,7 @@ Claude Code plugin marketplace.
 /plugin marketplace add oleggohman/cc-things
 /plugin install mitre-attack@oleggohman-cc-things
 /plugin install whatsapp@oleggohman-cc-things
+/plugin install provider-router@oleggohman-cc-things
 ```
 
 ## Plugins
@@ -30,3 +31,10 @@ Search, read and send your personal WhatsApp messages and media from Claude, thr
 - Messages, session and token are kept in the plugin data folder, so they survive plugin updates.
 
 Requires [uv](https://docs.astral.sh/uv/), Go and a C compiler; `ffmpeg` is optional for voice notes. Review every send call before approving it: an incoming message can carry prompt injection.
+
+### provider-router
+
+Route model requests by prefix (`anthropic:`, `zai:`, `openai:`, `custom:<name>:`) to other providers while unprefixed models stay on your Claude subscription. Works for the main session and subagents in parallel.
+
+- Source: [oleggohman/cc-provider-router](https://github.com/oleggohman/cc-provider-router), a TypeScript mod with no build step.
+- API keys and custom endpoints are set in the plugin config when you enable it.
