@@ -7,6 +7,7 @@ Claude Code plugin marketplace.
 ```
 /plugin marketplace add oleggohman/cc-things
 /plugin install mitre-attack@oleggohman-cc-things
+/plugin install cloudzone-hava@oleggohman-cc-things
 /plugin install whatsapp@oleggohman-cc-things
 /plugin install provider-router@oleggohman-cc-things
 ```
@@ -21,6 +22,15 @@ MITRE ATT&CK v20 and ATLAS for Claude Code: map incidents, alerts and CloudTrail
 - Skill: `using-mitre-attack-mcp`, with helper scripts for revoked IDs, detections and Navigator layers
 
 Requires [uv](https://docs.astral.sh/uv/).
+
+### cloudzone-hava
+
+Hava Cloud Diagrams: 47 MCP tools and the `hava-diagrams` skill to list, search, export and manage cloud architecture diagrams for AWS, Azure, GCP and Kubernetes.
+
+- Source: [CLDZE/hava_mcp](https://github.com/CLDZE/hava_mcp), vendored in `plugins/cloudzone-hava`.
+- Enter your Hava API token when enabling the plugin (kept in OS secure storage). Turn on read-only mode to hide every tool that changes data.
+
+Requires [uv](https://docs.astral.sh/uv/) and Node.js, plus a Hava Teams/Business plan or self-hosted install.
 
 ### whatsapp
 

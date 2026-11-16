@@ -1,0 +1,40 @@
+{
+  "name": "cloudzone-hava",
+  "displayName": "Hava Cloud Diagrams",
+  "version": "0.4.1",
+  "description": "Full Hava.io API access: list, search, export and manage cloud architecture diagrams for AWS, Azure, GCP and Kubernetes.",
+  "author": {
+    "name": "CloudZone",
+    "url": "https://cloudzone.io"
+  },
+  "homepage": "https://www.hava.io",
+  "license": "MIT",
+  "keywords": [
+    "hava",
+    "cloud",
+    "architecture",
+    "diagram",
+    "aws",
+    "azure",
+    "gcp",
+    "kubernetes",
+    "documentation",
+    "export"
+  ],
+  "userConfig": {
+    "api_token": {
+      "type": "string",
+      "title": "Hava API token",
+      "description": "Required. From app.hava.io -> your avatar -> Personal Settings -> API Tokens -> Display Token. Stored in your OS secure storage, not in settings.json. Needs a Hava Teams/Business plan or self-hosted install.",
+      "sensitive": true,
+      "required": true
+    },
+    "read_only": {
+      "type": "boolean",
+      "title": "Read-only mode",
+      "description": "Hide every tool that changes anything in Hava, leaving 19 read-only tools. Recommended unless you need to create, export or administer.",
+      "default": false,
+      "required": false
+    }
+  }
+}

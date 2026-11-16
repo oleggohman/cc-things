@@ -11,6 +11,11 @@
       "description": "MITRE ATT&CK / ATLAS MCP server plus a skill for mapping incidents, alerts and cloud events to techniques, mitigations and detections"
     },
     {
+      "name": "cloudzone-hava",
+      "source": "./plugins/cloudzone-hava",
+      "description": "Hava.io MCP server plus the hava-diagrams skill: list, search, export and manage cloud architecture diagrams for AWS, Azure, GCP and Kubernetes"
+    },
+    {
       "name": "whatsapp",
       "source": {
         "source": "url",

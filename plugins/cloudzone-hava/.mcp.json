@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "hava": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/server/launch.mjs"
+      ],
+      "env": {
+        "HAVA_API_TOKEN": "${user_config.api_token}",
+        "HAVA_MCP_READ_ONLY": "${user_config.read_only}"
+      }
+    }
+  }
+}
