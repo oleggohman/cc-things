@@ -8,7 +8,7 @@ license = { file = "LICENSE" }
 dependencies = [
     # Claude Desktop can fall back to initialize after a discovery timeout.
     # Keep the desktop release on the handshake protocol until that is fixed.
-    "mcp==1.29.0",
+    "mcp==1.30.0",
     "httpx>=0.27",
     "pydantic>=2.7",
 ]

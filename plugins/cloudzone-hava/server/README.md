@@ -92,10 +92,12 @@ command = "/absolute/path/to/hava_mcp/.venv/bin/hava-mcp"
 env_vars = ["HAVA_API_TOKEN", "HAVA_ENDPOINT", "HAVA_MCP_READ_ONLY"]
 startup_timeout_sec = 30
 tool_timeout_sec = 120
-
-[mcp_servers.hava.env]
-HAVA_MCP_HOST = "codex"   # makes the setup advice Codex-specific
 ```
+
+Do not set `HAVA_MCP_HOST = "codex"` here: it switches the missing-token advice
+to the packaged plugin's `~/.hava-mcp/api_token` file, which only the plugin's
+`launch.sh` reads. A server started directly like this takes the token from
+`HAVA_API_TOKEN` alone.
 
 ## Codex
 
@@ -104,8 +106,11 @@ a portable [Agent Plugins](https://agent-plugins.org) package for Codex CLI,
 the Codex IDE extension and Codex in the ChatGPT desktop app. Unzip it and run
 `./install.sh`: it copies the plugin to `~/.codex/plugins/cloudzone-hava`,
 registers it in the personal marketplace `~/.agents/plugins/marketplace.json`
-and prepares the Python environment. Then restart Codex, run `/plugins`, pick
-**Personal plugins** and install `cloudzone-hava`.
+and test-builds the Python environment, which also fills uv's download cache.
+Then restart Codex, run `/plugins`, pick **Personal plugins** and install
+`cloudzone-hava`. The first Codex start is still slower than later ones: Codex
+gives the plugin its own data directory, so the server builds its environment
+once more there, from the cache.
 
 Codex has no install-time prompt and does not forward your shell environment to
 a plugin's bundled server, so its launcher reads the token from
@@ -265,7 +270,8 @@ reference, probes the server for its live tool list, writes that into the
 `.mcpb` manifest, stamps the version into both manifests, validates both, and
 packs them.
 
-Version 0.3.9 pins MCP SDK 1.29.0 for Claude Desktop compatibility. Its legacy
+Version 0.4.1 pins MCP SDK 1.30.0 (1.x line; 0.3.9 introduced the 1.x pin) for
+Claude Desktop compatibility. Its legacy
 handshake remains valid even when Claude sends `server/discover` first and
 falls back to `initialize` after a startup timeout. This avoids the
 "connection is serving the 2026-07-28 protocol" error in Cowork/Code sessions.

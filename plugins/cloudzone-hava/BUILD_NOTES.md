@@ -48,7 +48,7 @@ when a tool runs, not at install), and the build installs the packed zip into
 a throwaway `HOME` and has the real `codex` CLI confirm it:
 `verify_codex_install` asserts the marketplace loads, `codex plugin add`
 installs and enables the plugin, and `codex mcp list` shows the server
-pointing at the cached `server/launch.sh`. Verified against codex-cli 0.162.1,
+pointing at the cached `server/launch.sh`. Verified against codex-cli 0.162.1 and 0.169.0,
 which also confirms `${PLUGIN_ROOT}` expansion in `args` and that Codex
 injects `PLUGIN_ROOT`/`PLUGIN_DATA` into the server's environment.
 
@@ -69,8 +69,11 @@ Verified here: install into a throwaway `HOME` (plugin copied to
 disturbing an unrelated entry, re-install idempotent), token resolution in all
 four states (env, file, env over file, unexpanded `${...}` placeholder
 dropped), `read_only` reducing 47 tools to 19 through the launcher, and
-`hava_auth_status` returning the Codex setup text. Not tested: Codex itself
-installing and loading the plugin, and the ChatGPT desktop app.
+`hava_auth_status` returning the Codex setup text, and - through
+`verify_codex_install` above - the `codex` CLI loading the marketplace,
+installing and enabling the plugin and registering its server. Not tested: an
+interactive Codex session starting the server and calling its tools, and the
+ChatGPT desktop app.
 
 A bundled stdio server keeps this package out of the public plugin directory;
 workspace publishing (ChatGPT -> Plugins -> Personal -> Publish) is unaffected.
