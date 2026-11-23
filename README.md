@@ -10,6 +10,7 @@ Claude Code plugin marketplace.
 /plugin install cloudzone-hava@oleggohman-cc-things
 /plugin install whatsapp@oleggohman-cc-things
 /plugin install provider-router@oleggohman-cc-things
+/plugin install outlook@oleggohman-cc-things
 ```
 
 ## Plugins
@@ -48,3 +49,12 @@ Route model requests by prefix (`anthropic:`, `zai:`, `openai:`, `custom:<name>:
 
 - Source: [oleggohman/cc-provider-router](https://github.com/oleggohman/cc-provider-router), a TypeScript mod with no build step.
 - API keys and custom endpoints are set in the plugin config when you enable it.
+
+### outlook
+
+List, search and read the mail, contacts and calendar that New Outlook for Mac has cached locally. Read-only, local, no network.
+
+- MCP server: [oleggohman/outlook-mcp](https://github.com/oleggohman/outlook-mcp) with nine read-only tools, plus the `outlook-local-mail` skill.
+- On Apple Silicon the launcher downloads a checksum-verified program from the release; otherwise it builds with cargo.
+
+macOS only. Requires New Outlook for Mac; Rust is needed only when there is no prebuilt program for your machine.
