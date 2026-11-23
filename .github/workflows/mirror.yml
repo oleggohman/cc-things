@@ -1,0 +1,39 @@
+name: Mirror to private repo
+
+# The Claude organization marketplace only accepts private or internal GitHub
+# repositories, so main is mirrored to a private copy that the organization syncs from.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    # The mirrored copy of this file must never run inside the mirror itself.
+    if: github.repository == 'oleggohman/cc-things'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Push main to the mirror
+        env:
+          MIRROR_DEPLOY_KEY: ${{ secrets.MIRROR_DEPLOY_KEY }}
+        run: |
+          set -euo pipefail
+          key="$RUNNER_TEMP/mirror_key"
+          printf '%s\n' "$MIRROR_DEPLOY_KEY" > "$key"
+          chmod 600 "$key"
+          export GIT_SSH_COMMAND="ssh -i $key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+          git push git@github.com:CLDZE/cc-things.git HEAD:refs/heads/main
+          rm -f "$key"

@@ -13,6 +13,8 @@ Claude Code plugin marketplace.
 /plugin install outlook@oleggohman-cc-things
 ```
 
+Claude organization marketplaces only accept private repositories, so `main` is mirrored to a private copy by `.github/workflows/mirror.yml`; the organization syncs from that copy.
+
 ## Plugins
 
 ### mitre-attack
